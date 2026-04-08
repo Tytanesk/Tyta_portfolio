@@ -39,7 +39,7 @@ const COMPANIES: CompanyData[] = [
     period: '2015 – 2019',
     accentColor: '#38bdf8',
     logoSrc: '/logos/universidad_de_malaga_logo.svg',
-    coverSrc: '/real_backgroung/malaga_university.jpg',
+    coverSrc: '/real_backgroung/malaga_university.webp',
     description: 'Built a strong foundation in computer science fundamentals. Graduated with honors, specializing in distributed systems and software architecture.',
     achievements: [
       'Graduated with honors in Computer Science',
@@ -77,7 +77,7 @@ const COMPANIES: CompanyData[] = [
     period: '2021 – 2023',
     accentColor: '#a78bfa',
     logoSrc: '/logos/accenture_logo.svg',
-    coverSrc: '/real_backgroung/accenture_cover.jpg',
+    coverSrc: '/real_backgroung/accenture_cover.webp',
     description: 'Developed and deployed 12+ ML models including NLP and deep learning pipelines. Improved prediction accuracy by 25% across systems serving 50K+ users.',
     achievements: [
       'Deployed 12+ ML models including NLP and deep learning pipelines',
@@ -191,7 +191,7 @@ const COMPANIES: CompanyData[] = [
     period: '2023 – 2024',
     accentColor: '#34d399',
     logoSrc: '/logos/arhs_group_logo.svg',
-    coverSrc: '/real_backgroung/arhs_group_cover.jpg',
+    coverSrc: '/real_backgroung/arhs_group_cover.webp',
     description: 'Designed and deployed 8+ AI-driven full-stack features improving workflow efficiency by 30%. Scaled cloud infrastructure to handle 78K+ daily requests.',
     achievements: [
       'Designed and deployed 8+ AI-driven full-stack features',
@@ -1241,7 +1241,7 @@ export default function ExperiencePage() {
     <div
       className="relative min-h-screen"
       style={{
-        backgroundImage: 'url(/experience.png)',
+        backgroundImage: 'url(/experience.webp)',
         backgroundSize: 'cover',
         backgroundPosition: 'center top',
       }}
