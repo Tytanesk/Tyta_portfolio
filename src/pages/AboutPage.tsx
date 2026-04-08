@@ -73,7 +73,7 @@ export default function AboutPage() {
     <div
       className="about-bg about-page relative"
       style={{
-        backgroundImage: 'url(/about.webp)',
+        backgroundImage: 'url(/about.png)',
         backgroundSize: '100% auto',
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'center top',
