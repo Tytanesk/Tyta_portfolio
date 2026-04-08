@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import TerminalShell from './TerminalShell'
 
 const NODES = [
@@ -66,7 +66,6 @@ function toXY(pct: { x: number; y: number }) {
 interface Props { open: boolean; onClose: () => void }
 
 export default function SystemArchitectModal({ open, onClose }: Props) {
-  const overlayRef = useRef<HTMLDivElement>(null)
   const [active, setActive] = useState<string | null>(null)
   const [animated, setAnimated] = useState(false)
 

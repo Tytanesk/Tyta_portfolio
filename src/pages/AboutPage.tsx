@@ -47,7 +47,6 @@ const milestones: { year: string; label: string; title: string; detail: string }
 ]
 
 export default function AboutPage() {
-  const bgRef = useRef<HTMLDivElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
   const [videoPlaying, setVideoPlaying] = useState(false)
   const [active, setActive] = useState<number | null>(2)
