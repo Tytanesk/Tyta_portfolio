@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import LLMProjectModal from '../components/LLMProjectModal'
 import AIChatbotModal from '../components/AIChatbotModal'
@@ -6,6 +7,7 @@ import AIEngineerModal from '../components/AIEngineerModal'
 import FullStackModal from '../components/FullStackModal'
 import SystemArchitectModal from '../components/SystemArchitectModal'
 import TeamLeaderModal from '../components/TeamLeaderModal'
+import DeveloperCommandCenter from '../components/DeveloperCommandCenter'
 
 const milestones: { year: string; label: string; title: string; detail: string }[] = [
   {
@@ -47,8 +49,6 @@ const milestones: { year: string; label: string; title: string; detail: string }
 ]
 
 export default function AboutPage() {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [videoPlaying, setVideoPlaying] = useState(false)
   const [active, setActive] = useState<number | null>(2)
   const [llmOpen, setLlmOpen] = useState(false)
   const [chatbotOpen, setChatbotOpen] = useState(false)
@@ -1591,134 +1591,7 @@ export default function AboutPage() {
           </div>
         </div>
 
-        {/* Watch My Story + Skill Bars */}
-        <div className="story-row flex items-center gap-10 mt-70" style={{ width: '90vw' }}>
-          {/* Left: video panel */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            className="story-video flex-shrink-0 flex flex-col"
-            style={{ width: '42%' }}
-          >
-            <div className="relative overflow-hidden"
-              style={{
-                border: '1px solid rgba(56,189,248,0.3)',
-                boxShadow: '0 0 24px rgba(56,189,248,0.15)',
-                background: '#050816',
-                aspectRatio: '16/9',
-              }}
-            >
-              <video
-                ref={videoRef}
-                src="/story.mp4"
-                loop
-                muted
-                playsInline
-                className="w-full h-full object-cover"
-                onError={e => { (e.currentTarget as HTMLVideoElement).style.display = 'none' }}
-              />
-              {/* fallback placeholder shown when no video */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                style={{ background: 'rgba(5,8,30,0.7)' }}>
-                <div className="text-center font-mono">
-                  <div className="text-4xl mb-2" style={{ color: 'rgba(56,189,248,0.3)' }}>▶</div>
-                  <p className="text-xs" style={{ color: 'rgba(56,189,248,0.4)' }}>
-                    Add story.mp4 to /public
-                  </p>
-                </div>
-              </div>
-              {/* Play/Pause overlay button */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => {
-                  if (!videoRef.current) return
-                  if (videoPlaying) { videoRef.current.pause(); setVideoPlaying(false) }
-                  else { videoRef.current.play(); setVideoPlaying(true) }
-                }}
-                className="absolute bottom-3 right-3 flex items-center justify-center rounded-full"
-                style={{
-                  width: 40, height: 40,
-                  background: 'rgba(56,189,248,0.2)',
-                  border: '1px solid rgba(56,189,248,0.6)',
-                  boxShadow: '0 0 12px rgba(56,189,248,0.4)',
-                  color: '#38bdf8',
-                  fontSize: '1rem',
-                }}
-              >
-                {videoPlaying ? '⏸' : '▶'}
-              </motion.button>
-            </div>
-            {/* Watch My Story label */}
-            <motion.div
-              whileHover={{ x: 4 }}
-              className="flex items-center gap-2 mt-3 cursor-pointer"
-              style={{ borderTop: '1px dashed rgba(56,189,248,0.2)', paddingTop: 12 }}
-            >
-              <span className="text-white font-bold text-lg">Watch</span>
-              <span className="text-white text-lg">My Story</span>
-              <motion.span
-                animate={{ x: [0, 5, 0] }}
-                transition={{ duration: 1.2, repeat: Infinity }}
-                className="text-lg font-bold"
-                style={{ color: '#38bdf8' }}
-              >›</motion.span>
-            </motion.div>
-          </motion.div>
-
-          {/* Right: title + skill bars */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="flex-1"
-            style={{ marginLeft: '90px', marginBottom: '70px' }}
-          >
-            <h2 className="text-white font-extrabold text-3xl mb-1 flex items-center gap-2">
-              Building Innovative Solutions
-              <span style={{ color: '#38bdf8' }}>»</span>
-            </h2>
-            <p className="text-slate-400 text-sm mb-6 leading-relaxed">
-              Full-stack, AI/ML & cloud expertise — built across 3 companies, 2 continents.
-            </p>
-            {[
-              { label: 'Python',              pct: 95, color: '#38bdf8' },
-              { label: 'React / Next.js',     pct: 90, color: '#38bdf8' },
-              { label: 'Node.js / FastAPI',   pct: 88, color: '#38bdf8' },
-              { label: 'Machine Learning',    pct: 92, color: '#fb923c' },
-              { label: 'LLM & Deep Learning', pct: 88, color: '#fb923c' },
-              { label: 'AWS / Docker / K8s',  pct: 87, color: '#fb923c' },
-         
-            ].map((s, i) => (
-              <motion.div key={s.label} className="mb-4"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 + i * 0.1 }}
-              >
-                <div className="flex items-center gap-3 mb-1">
-                  <span className="w-1.5 h-1.5 rounded-full flex-shrink-0"
-                    style={{ background: s.color, boxShadow: `0 0 6px ${s.color}` }} />
-                  <span className="text-slate-300 text-sm flex-1">{s.label}</span>
-                  <span className="text-white font-bold text-sm">{s.pct}%</span>
-                </div>
-                <div className="h-2 rounded-full overflow-hidden" style={{ background: 'rgba(255,255,255,0.06)' }}>
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${s.pct}%` }}
-                    transition={{ duration: 1.2, delay: 0.4 + i * 0.1, ease: 'easeOut' }}
-                    className="h-full rounded-full"
-                    style={{
-                      background: `linear-gradient(90deg, ${s.color}66, ${s.color})`,
-                      boxShadow: `0 0 8px ${s.color}88`,
-                    }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-
-        </div>
+        <DeveloperCommandCenter />
 
         {/* Footer socials */}
         <motion.footer
@@ -1726,7 +1599,7 @@ export default function AboutPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
           className="footer-socials relative z-10 flex items-center justify-center gap-6 py-1"
-          style={{ borderTop: '1px solid rgba(56,189,248,0.12)', marginTop: '70px'}}
+          style={{ borderTop: '1px solid rgba(56,189,248,0.12)', marginTop: '30px'}}
         >
           <span style={{ color: 'rgba(56,189,248,0.3)', letterSpacing: 6, fontSize: 12 }}>• •</span>
 
@@ -1770,28 +1643,33 @@ export default function AboutPage() {
           </motion.a>
 
           {/* Get in Touch */}
-          <motion.a href="freeburner80@gmail.com"
-            whileHover={{ scale: 1.06, y: -4 }}
-            whileTap={{ scale: 0.95 }}
-            className="footer-touch flex items-center gap-3 px-7 py-4"
-            style={{
-              background: 'rgba(56,189,248,0.08)',
-              border: '1px solid rgba(56,189,248,0.7)',
-              borderRadius: 8,
-              color: '#38bdf8',
-              fontSize: 18,
-              fontWeight: 600,
-              boxShadow: '0 0 12px rgba(56,189,248,0.8), 0 0 30px rgba(56,189,248,0.4), inset 0 0 12px rgba(56,189,248,0.08)',
-              letterSpacing: '0.02em',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            <svg className="mail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 32, height: 32 }}>
-              <rect x="2" y="4" width="20" height="16" rx="2"/>
-              <polyline points="2,4 12,13 22,4"/>
-            </svg>
-            <span className="footer-touch-text">Get in Touch</span>
-          </motion.a>
+          {(() => {
+            const MotionLink = motion(Link)
+            return (
+              <MotionLink to="/contact"
+                whileHover={{ scale: 1.06, y: -4 }}
+                whileTap={{ scale: 0.95 }}
+                className="footer-touch flex items-center gap-3 px-7 py-4"
+                style={{
+                  background: 'rgba(56,189,248,0.08)',
+                  border: '1px solid rgba(56,189,248,0.7)',
+                  borderRadius: 8,
+                  color: '#38bdf8',
+                  fontSize: 18,
+                  fontWeight: 600,
+                  boxShadow: '0 0 12px rgba(56,189,248,0.8), 0 0 30px rgba(56,189,248,0.4), inset 0 0 12px rgba(56,189,248,0.08)',
+                  letterSpacing: '0.02em',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                <svg className="mail-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ width: 32, height: 32 }}>
+                  <rect x="2" y="4" width="20" height="16" rx="2"/>
+                  <polyline points="2,4 12,13 22,4"/>
+                </svg>
+                <span className="footer-touch-text">Get in Touch</span>
+              </MotionLink>
+            )
+          })()}
 
           <span style={{ color: 'rgba(56,189,248,0.3)', letterSpacing: 6, fontSize: 12 }}>• •</span>
         </motion.footer>
