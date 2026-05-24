@@ -37,8 +37,9 @@ const commandSpecs: CommandSpec[] = [
     accent: '#a78bfa',
     terminalLines: [
       'Installing developer modules...',
-      'Compiling frontend power...',
-      'Loading backend logic...',
+      'Loading AI & machine learning stack...',
+      'Compiling frontend + backend layers...',
+      'Provisioning cloud infrastructure...',
       'Build complete ✅',
       'Skills loaded successfully.',
     ],
@@ -133,16 +134,70 @@ const hireChecks = [
 ]
 
 const skillWaves = [
-  { category: 'Frontend', skills: ['React', 'Next.js', 'TypeScript'] },
-  { category: 'Styling', skills: ['Tailwind', 'Framer Motion'] },
-  { category: 'Backend', skills: ['Node.js', 'Express', 'PostgreSQL'] },
-  { category: 'Tools', skills: ['Git', 'Docker', 'Vercel'] },
+  {
+    category: 'AI & Machine Learning',
+    skills: [
+      'Data Preprocessing',
+      'Deep Learning',
+      'LLM',
+      'Machine Learning',
+      'Model Deployment',
+      'Neural Networks',
+      'PyTorch',
+      'Scikit-learn',
+      'TensorFlow',
+    ],
+  },
+  {
+    category: 'Backend Development',
+    skills: [
+      'Authentication & Authorization',
+      'Distributed Systems',
+      'Django',
+      'FastAPI',
+      'Microservices',
+      'Node.js / Express',
+      'React',
+      'REST API',
+      'System Design',
+    ],
+  },
+  {
+    category: 'Frontend Development',
+    skills: [
+      'API Integration',
+      'HTML / CSS',
+      'Next.js',
+      'React.js',
+      'State Management',
+      'Tailwind',
+      'Vue.js',
+    ],
+  },
+  {
+    category: 'Cloud & DevOps',
+    skills: [
+      'AWS',
+      'CI/CD',
+      'Cloud Deployment',
+      'Docker',
+      'Infrastructure Automation',
+      'Kubernetes',
+      'Linux',
+    ],
+  },
+  {
+    category: 'Databases',
+    skills: ['Database Modeling', 'MongoDB', 'MySQL', 'PostgreSQL', 'Redis'],
+  },
 ] as const
 
 const skillsBuildLogs = [
   'Installing developer modules...',
-  'Compiling frontend power...',
-  'Loading backend logic...',
+  'Loading AI & machine learning stack...',
+  'Compiling frontend + backend layers...',
+  'Provisioning cloud infrastructure...',
+  'Seeding database skillsets...',
 ] as const
 
 function getCommandSpec(value: string) {
@@ -1346,28 +1401,32 @@ function SkillsVisual({ accent }: { accent: string }) {
 
     const timers = [
       window.setTimeout(() => setVisibleLogs(1), 200),
-      window.setTimeout(() => setProgress(18), 350),
-      window.setTimeout(() => setVisibleLogs(2), 650),
-      window.setTimeout(() => setProgress(38), 800),
-      window.setTimeout(() => setVisibleLogs(3), 1050),
-      window.setTimeout(() => setProgress(52), 1200),
+      window.setTimeout(() => setProgress(12), 350),
+      window.setTimeout(() => setVisibleLogs(2), 550),
       window.setTimeout(() => {
         setUnlockedWaves(1)
-        setProgress(62)
-      }, 1450),
+        setProgress(24)
+      }, 800),
+      window.setTimeout(() => setVisibleLogs(3), 1000),
       window.setTimeout(() => {
         setUnlockedWaves(2)
-        setProgress(74)
-      }, 1950),
+        setProgress(38)
+      }, 1250),
+      window.setTimeout(() => setVisibleLogs(4), 1450),
       window.setTimeout(() => {
         setUnlockedWaves(3)
-        setProgress(86)
-      }, 2450),
+        setProgress(54)
+      }, 1700),
+      window.setTimeout(() => setVisibleLogs(5), 1900),
       window.setTimeout(() => {
         setUnlockedWaves(4)
+        setProgress(72)
+      }, 2150),
+      window.setTimeout(() => {
+        setUnlockedWaves(5)
         setProgress(100)
-      }, 2950),
-      window.setTimeout(() => setDone(true), 3600),
+      }, 2600),
+      window.setTimeout(() => setDone(true), 3200),
     ]
 
     return () => timers.forEach(clearTimeout)
@@ -1381,7 +1440,7 @@ function SkillsVisual({ accent }: { accent: string }) {
 
   return (
     <div
-      className="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/8 bg-[radial-gradient(circle_at_top,rgba(167,139,250,0.12),transparent_40%),linear-gradient(180deg,rgba(2,6,23,0.95),rgba(15,23,42,0.98))] p-4"
+      className="relative min-h-[420px] overflow-hidden rounded-2xl border border-white/8 bg-[radial-gradient(circle_at_top,rgba(167,139,250,0.12),transparent_40%),linear-gradient(180deg,rgba(2,6,23,0.95),rgba(15,23,42,0.98))] p-4"
       style={{ boxShadow: `0 0 28px ${accent}14` }}
     >
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(167,139,250,0.08),transparent_45%)]" />
@@ -1422,7 +1481,7 @@ function SkillsVisual({ accent }: { accent: string }) {
           </div>
         </div>
 
-        <div className="max-h-[168px] space-y-2.5 overflow-y-auto pr-1">
+        <div className="max-h-[220px] space-y-2.5 overflow-y-auto pr-1">
           {skillWaves.map((wave, waveIndex) => {
             const waveVisible = waveIndex < unlockedWaves
             return (
@@ -1435,7 +1494,7 @@ function SkillsVisual({ accent }: { accent: string }) {
                 }}
               >
                 <p
-                  className="mb-2 text-[10px] font-bold uppercase tracking-[0.3em]"
+                  className="mb-2 text-[10px] font-bold uppercase leading-tight tracking-wide"
                   style={{ color: waveVisible ? accent : '#64748b' }}
                 >
                   {wave.category}
@@ -1926,10 +1985,10 @@ export default function DeveloperCommandCenter() {
             style={{ background: 'linear-gradient(90deg, #fb923c, #38bdf8, transparent)' }}
           />
         </h2>
-        <p className="mx-auto max-w-2xl text-center text-sm text-slate-400 md:text-base">
+        {/* <p className="mx-auto max-w-2xl text-center text-sm text-slate-400 md:text-base">
           A mini developer command center where terminal commands wake up architecture, performance,
           realtime, and delivery visuals on the right.
-        </p>
+        </p> */}
       </motion.div>
 
       <div className="grid gap-6 lg:grid-cols-[minmax(320px,420px)_minmax(0,1fr)]">
